@@ -1,0 +1,13 @@
+/* Custom Styles for Dados Express */
+/* A maioria dos estilos é gerenciada via Tailwind CSS no index.html */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

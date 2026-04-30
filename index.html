@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dados Express | Inteligência de Dados e Automação para PMEs</title>
+    <meta name="description" content="Do pipeline ao Power BI. Acelerando os resultados de pequenas e médias empresas com automação, dashboards inteligentes e estruturação de dados.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Custom (Variáveis e animações complementares) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS (CDN para execução sem build, conforme estilo "como se fosse Tailwind") -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            DEFAULT: '#00FF87',
+                            light: '#33ff9f',
+                        },
+                        cyan: {
+                            DEFAULT: '#00E5FF',
+                        },
+                        card: '#121212',
+                        gray: {
+                            800: '#1e1e1e',
+                            900: '#0a0a0a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'bounce': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-black text-gray-100 font-sans antialiased selection:bg-emerald selection:text-black">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-black/60 border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center transition-transform hover:scale-105">
+                <img src="logo_dados_express_final.png?v=1" alt="Dados Express" class="h-10 w-auto mix-blend-screen">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 text-base font-medium text-gray-300">
+                <a href="#about" class="hover:text-white hover:text-emerald transition-colors py-2 border-b-2 border-transparent hover:border-emerald">Sobre Nós</a>
+                <a href="#architecture" class="hover:text-white hover:text-emerald transition-colors py-2 border-b-2 border-transparent hover:border-emerald">Serviços</a>
+                <a href="#stack" class="hover:text-white hover:text-emerald transition-colors py-2 border-b-2 border-transparent hover:border-emerald">Especialidades</a>
+                <a href="#projects" class="hover:text-white hover:text-emerald transition-colors py-2 border-b-2 border-transparent hover:border-emerald">Soluções</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-black bg-emerald rounded-full hover:bg-emerald-light transition-all hover:shadow-[0_0_20px_rgba(0,255,135,0.4)]">
+                Faça seu orçamento
+            </a>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white" id="mobile-menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Effects -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan/10 rounded-full blur-[120px]"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald/30 bg-emerald/10 text-emerald text-xs font-semibold uppercase tracking-wider mb-8">
+                <span class="w-2 h-2 rounded-full bg-emerald animate-pulse"></span>
+                Soluções Inteligentes para Pequenas e Médias Empresas
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                Do pipeline ao <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-cyan">Power BI</span>.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                Aceleramos o crescimento e a eficiência de pequenas e médias empresas com a implementação inteligente de dados, automação e dashboards de alto impacto que transformam a sua operação.
+            </p>
+
+            <!-- Central Mockup Image -->
+            <div class="relative w-full max-w-5xl mx-auto mt-8 perspective-1000">
+                <!-- Glowing background for the image -->
+                <div class="absolute -inset-1 bg-gradient-to-r from-emerald/30 to-cyan/30 blur-2xl opacity-40"></div>
+                
+                <!-- The Mockup Image Container -->
+                <div class="relative bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-500 hover:shadow-[0_30px_60px_rgba(0,255,135,0.2)]">
+                    <!-- Faux Top Bar -->
+                    <div class="flex items-center px-4 py-3 bg-black/60 border-b border-white/10 z-10 backdrop-blur-md">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald/80"></div>
+                        </div>
+                        <div class="mx-auto text-xs font-mono text-gray-500 tracking-wider">Power BI - Analytics B2B</div>
+                    </div>
+                    <!-- The Actual Generated Image -->
+                    <img src="dashboard_vendas_final.png?v=1" alt="Dashboard de Vendas B2B" class="w-full h-auto block opacity-90 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+
+            <!-- Partner Logos -->
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
+                <span class="text-sm font-bold text-gray-300 flex items-center gap-2 hover:text-white transition-colors"><i data-lucide="bar-chart" class="w-5 h-5 text-yellow-500"></i> Power BI</span>
+                <span class="text-sm font-bold text-gray-300 flex items-center gap-2 hover:text-white transition-colors"><i data-lucide="database" class="w-5 h-5 text-red-500"></i> SQL Server</span>
+                <span class="text-sm font-bold text-gray-300 flex items-center gap-2 hover:text-white transition-colors"><i data-lucide="table" class="w-5 h-5 text-green-500"></i> Excel</span>
+                <span class="text-sm font-bold text-gray-300 flex items-center gap-2 hover:text-white transition-colors"><i data-lucide="terminal" class="w-5 h-5 text-blue-500"></i> Python</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Por que a <br/><span class="text-emerald">Dados Express</span>?</h2>
+                    <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                        Na <strong class="text-gray-200">Dados Express</strong>, profissionalizamos sua gestão do início ao fim. Primeiro, automatizamos a coleta de dados e criamos pipelines de tratamento para garantir informações precisas. Organizamos tudo em um banco de dados seguro, que alimenta dashboards em tempo real para suas decisões estratégicas.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8 text-lg">
+                        Para completar sua autoridade, criamos sua <strong class="text-gray-200">sede digital</strong> com páginas profissionais integradas, transformando sua vitrine online na principal porta de entrada para novos negócios. Automatizamos sua coleta, estruturamos sua base e projetamos o seu próximo nível de faturamento.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 mt-8">
+                        <div>
+                            <h4 class="text-4xl font-bold text-white mb-2">100%</h4>
+                            <p class="text-sm text-gray-500 font-medium">Foco em Resultados</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-bold text-white mb-2">0</h4>
+                            <p class="text-sm text-gray-500 font-medium">Esforço Manual com Automação</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative reveal">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-emerald/20 to-transparent rounded-2xl blur-2xl"></div>
+                    <div class="bg-card border border-white/10 p-8 rounded-2xl relative z-10 shadow-2xl">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-12 h-12 rounded-full bg-emerald/10 flex items-center justify-center text-emerald">
+                                <i data-lucide="target"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-xl">Foco em Resultados</h3>
+                                <p class="text-gray-400 text-sm">O dado pelo dado não tem valor.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="text-emerald w-6 h-6 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-gray-200 font-medium mb-1">Automação Sob Medida</h4>
+                                    <p class="text-gray-500 text-sm">Eliminamos tarefas repetitivas integrando as ferramentas que você já usa.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="text-emerald w-6 h-6 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-gray-200 font-medium mb-1">Arquitetura Completa</h4>
+                                    <p class="text-gray-500 text-sm">Estruturação de bancos de dados robustos (Supabase, PostgreSQL) e escaláveis.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="text-emerald w-6 h-6 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-gray-200 font-medium mb-1">Visualização no Power BI</h4>
+                                    <p class="text-gray-500 text-sm">Dashboards dinâmicos para acompanhamento estratégico do seu negócio em tempo real.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="text-emerald w-6 h-6 shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h4 class="text-gray-200 font-medium mb-1">Sede Digital & Presença Web</h4>
+                                    <p class="text-gray-500 text-sm">Páginas profissionais integradas para transformar sua vitrine em máquina de novos negócios.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-24 bg-white/[0.02] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nossa <span class="text-emerald">Jornada de Dados</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">A automação é o seu motor, os dados são o combustível e o site é sua vitrine de guerra. Nós montamos o ecossistema completo que separa quem brinca de empreender de quem fatura milhões. Do pipeline à sua página na internet, entregamos a clareza que o amadorismo nunca terá. A Dados Express não faz apenas sites; nós construímos máquinas de escala.</p>
+            </div>
+            
+            <div class="relative max-w-6xl mx-auto reveal">
+                <!-- Visual Pipeline -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 relative" id="architecture-pipeline">
+                    
+                    <!-- Line connector (desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-gray-800 via-emerald/50 to-cyan/50 -translate-y-1/2 z-0"></div>
+                    
+                    <!-- Node 1: Automações -->
+                    <div class="arch-node relative z-10 bg-card border border-white/10 p-6 rounded-xl flex flex-col items-center w-full md:w-48 shadow-lg transition-all duration-300 cursor-pointer hover:border-purple-500/50" onclick="activateNode(this, 'purple-400', 'Eficiência')">
+                        <div class="arch-badge absolute -top-3 px-3 py-0.5 bg-purple-500 text-white text-[10px] font-bold rounded-full uppercase tracking-wider opacity-0 transition-opacity">Eficiência</div>
+                        <div class="w-14 h-14 bg-purple-500/5 rounded-full flex items-center justify-center mb-4 transition-all duration-300 icon-container">
+                            <i data-lucide="zap" class="text-purple-400 w-7 h-7 transition-all duration-300 icon-el" data-color="text-purple-400"></i>
+                        </div>
+                        <h4 class="text-white font-medium text-center transition-all duration-300 title-el">Automações</h4>
+                        <p class="text-xs text-gray-500 mt-2 text-center transition-all duration-300 desc-el">n8n / Make / APIs</p>
+                    </div>
+
+                    <!-- Arrow (mobile) -->
+                    <i data-lucide="arrow-down" class="md:hidden text-gray-600"></i>
+                    
+                    <!-- Node 2: Pipeline -->
+                    <div class="arch-node relative z-10 bg-[#121212] border-2 border-emerald/30 p-6 rounded-xl flex flex-col items-center w-full md:w-56 shadow-[0_0_30px_rgba(0,255,135,0.1)] transition-all duration-300 transform md:-translate-y-4 cursor-pointer hover:shadow-[0_0_40px_rgba(0,255,135,0.2)]" onclick="activateNode(this, 'emerald', 'Integração')">
+                        <div class="arch-badge absolute -top-3 px-3 py-0.5 bg-emerald text-black text-[10px] font-bold rounded-full uppercase tracking-wider transition-opacity">Integração</div>
+                        <div class="w-16 h-16 bg-emerald/5 rounded-lg border border-emerald/20 flex items-center justify-center mb-4 transition-all duration-300 icon-container">
+                            <i data-lucide="workflow" class="text-emerald w-8 h-8 transition-all duration-300 icon-el" data-color="text-emerald"></i>
+                        </div>
+                        <h4 class="text-white font-bold text-center text-lg transition-all duration-300 title-el">Pipelines</h4>
+                        <p class="text-xs text-emerald/80 mt-2 text-center font-medium transition-all duration-300 desc-el">Tratativa de Dados</p>
+                    </div>
+
+                    <!-- Arrow (mobile) -->
+                    <i data-lucide="arrow-down" class="md:hidden text-gray-600"></i>
+
+                    <!-- Node 3: Database -->
+                    <div class="arch-node relative z-10 bg-card border border-white/10 p-6 rounded-xl flex flex-col items-center w-full md:w-48 shadow-lg transition-all duration-300 cursor-pointer hover:border-cyan/50" onclick="activateNode(this, 'cyan', 'Estruturação')">
+                        <div class="arch-badge absolute -top-3 px-3 py-0.5 bg-cyan text-black text-[10px] font-bold rounded-full uppercase tracking-wider opacity-0 transition-opacity">Estruturação</div>
+                        <div class="w-14 h-14 bg-cyan/5 rounded-full flex items-center justify-center mb-4 transition-all duration-300 icon-container">
+                            <i data-lucide="database" class="text-cyan w-7 h-7 transition-all duration-300 icon-el" data-color="text-cyan"></i>
+                        </div>
+                        <h4 class="text-white font-medium text-center transition-all duration-300 title-el">Banco de Dados</h4>
+                        <p class="text-xs text-gray-500 mt-2 text-center transition-all duration-300 desc-el">Criamos para você</p>
+                    </div>
+
+                    <!-- Arrow (mobile) -->
+                    <i data-lucide="arrow-down" class="md:hidden text-gray-600"></i>
+
+                    <!-- Node 4: Power BI -->
+                    <div class="arch-node relative z-10 bg-card border border-white/10 p-6 rounded-xl flex flex-col items-center w-full md:w-48 shadow-lg transition-all duration-300 cursor-pointer hover:border-emerald/50" onclick="activateNode(this, 'emerald', 'Visualização')">
+                        <div class="arch-badge absolute -top-3 px-3 py-0.5 bg-emerald text-black text-[10px] font-bold rounded-full uppercase tracking-wider opacity-0 transition-opacity">Visualização</div>
+                        <div class="w-14 h-14 bg-emerald/5 rounded-full flex items-center justify-center mb-4 transition-all duration-300 icon-container">
+                            <i data-lucide="pie-chart" class="text-emerald w-7 h-7 transition-all duration-300 icon-el" data-color="text-emerald"></i>
+                        </div>
+                        <h4 class="text-white font-medium text-center transition-all duration-300 title-el">Dashboards</h4>
+                        <p class="text-xs text-gray-500 mt-2 text-center transition-all duration-300 desc-el">Power BI / Looker / +</p>
+                    </div>
+
+                    <!-- Arrow (mobile) -->
+                    <i data-lucide="arrow-down" class="md:hidden text-gray-600"></i>
+
+                    <!-- Node 5: Seu Site -->
+                    <div class="arch-node relative z-10 bg-card border border-white/10 p-6 rounded-xl flex flex-col items-center w-full md:w-48 shadow-lg transition-all duration-300 cursor-pointer hover:border-yellow-500/50" onclick="activateNode(this, 'yellow-500', 'Presença')">
+                        <div class="arch-badge absolute -top-3 px-3 py-0.5 bg-yellow-500 text-black text-[10px] font-bold rounded-full uppercase tracking-wider opacity-0 transition-opacity">Presença</div>
+                        <div class="w-14 h-14 bg-yellow-500/5 rounded-full flex items-center justify-center mb-4 transition-all duration-300 icon-container">
+                            <i data-lucide="layout" class="text-yellow-500 w-7 h-7 transition-all duration-300 icon-el" data-color="text-yellow-500"></i>
+                        </div>
+                        <h4 class="text-white font-medium text-center transition-all duration-300 title-el">Seu Site</h4>
+                        <p class="text-xs text-gray-500 mt-2 text-center transition-all duration-300 desc-el">Sua página na internet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="stack" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nossas <span class="text-emerald">Especialidades</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Sua empresa gera dados. Nós geramos a inteligência necessária para você lucrar com eles.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Automation -->
+                <div class="bg-card border border-white/10 p-8 rounded-2xl reveal group hover:bg-white/[0.02] transition-colors">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 border border-white/10 group-hover:border-emerald/30 transition-colors">
+                        <i data-lucide="zap" class="text-white w-6 h-6 group-hover:text-emerald transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Automações</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> n8n (Integrações Complexas)
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Make & Zapier
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Conexão com APIs REST
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Webhooks e Disparos
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Data & Eng -->
+                <div class="bg-card border border-white/10 p-8 rounded-2xl reveal group hover:bg-white/[0.02] transition-colors" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 border border-white/10 group-hover:border-emerald/30 transition-colors">
+                        <i data-lucide="database" class="text-white w-6 h-6 group-hover:text-emerald transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Implementação de Dados</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Modelagem de Banco de Dados
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Pipelines ETL Automatizados
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> PostgreSQL / MySQL
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Tratamento de Dados
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- BI & Analytics -->
+                <div class="bg-card border border-white/10 p-8 rounded-2xl reveal group hover:bg-white/[0.02] transition-colors" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 border border-white/10 group-hover:border-emerald/30 transition-colors">
+                        <i data-lucide="pie-chart" class="text-white w-6 h-6 group-hover:text-emerald transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Power BI & Dashboards</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Power BI Institucional
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Modelagem DAX Avançada
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Visualizações Interativas
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Atualização em Tempo Real
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Web Development -->
+                <div class="bg-card border border-white/10 p-8 rounded-2xl reveal group hover:bg-white/[0.02] transition-colors" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 border border-white/10 group-hover:border-emerald/30 transition-colors">
+                        <i data-lucide="layout" class="text-white w-6 h-6 group-hover:text-emerald transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Criação de Páginas</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Landing Pages de Alta Conversão
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> UI/UX Design Personalizado
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Interfaces Web Modernas
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald"></div> Otimização de Performance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-white/[0.02] border-t border-white/5 relative">
+        <!-- Glow effect -->
+        <div class="absolute top-1/2 right-0 w-96 h-96 bg-emerald/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Nossos <span class="text-emerald">Serviços</span></h2>
+                    <p class="text-gray-400 max-w-xl">Tecnologia de ponta não precisa ser cara. Oferecemos soluções acessíveis que trazem <strong class="text-white">alto retorno financeiro</strong> para o seu negócio.</p>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Planilha para Dashboard -->
+                <div class="bg-card border border-white/10 rounded-2xl p-6 group reveal hover:-translate-y-2 hover:border-emerald/50 transition-all duration-300 shadow-lg flex flex-col">
+                    <div class="w-12 h-12 bg-gradient-to-br from-emerald/20 to-emerald/5 rounded-xl border border-emerald/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="bar-chart-2" class="text-emerald w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Fim das Planilhas Manuais</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Pegamos a sua planilha de faturamento (ou qualquer outra) e transformamos em um Dashboard dinâmico no Power BI. Acompanhe suas vendas e lucros em tempo real pelo celular ou PC.
+                    </p>
+                    <ul class="text-[10px] text-gray-500 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald"></i> Visão clara do negócio</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald"></i> Decisões mais rápidas</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Banco de Dados -->
+                <div class="bg-card border border-white/10 rounded-2xl p-6 group reveal hover:-translate-y-2 hover:border-cyan/50 transition-all duration-300 shadow-lg flex flex-col" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-gradient-to-br from-cyan/20 to-cyan/5 rounded-xl border border-cyan/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="database" class="text-cyan w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Criação de Banco de Dados</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Seus dados estão espalhados e desorganizados? Se você não tem um banco de dados, nós criamos um para você do zero. Centralizamos suas informações com total segurança e custo acessível.
+                    </p>
+                    <ul class="text-[10px] text-gray-500 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-cyan"></i> Dados 100% seguros</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-cyan"></i> Fim da perda de informações</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Automação -->
+                <div class="bg-card border border-white/10 rounded-2xl p-6 group reveal hover:-translate-y-2 hover:border-purple-500/50 transition-all duration-300 shadow-lg flex flex-col" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-500/5 rounded-xl border border-purple-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="zap" class="text-purple-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Automação de Tarefas</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Precisa de automatização para não ficar fazendo serviço repetitivo? Nós fazemos. Robôs digitais executam o trabalho braçal para que sua equipe foque no que importa: vender mais.
+                    </p>
+                    <ul class="text-[10px] text-gray-500 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400"></i> Economia de tempo</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400"></i> Zero erros humanos</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Páginas Personalizadas -->
+                <div class="bg-card border border-white/10 rounded-2xl p-6 group reveal hover:-translate-y-2 hover:border-yellow-500/50 transition-all duration-300 shadow-lg flex flex-col" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500/20 to-yellow-500/5 rounded-xl border border-yellow-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="layout" class="text-yellow-500 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Páginas Personalizadas</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Criamos páginas e interfaces padronizadas com a identidade do seu negócio. Design profissional e focado em conversão, totalmente integrado à sua estrutura de dados.
+                    </p>
+                    <ul class="text-[10px] text-gray-500 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-yellow-500"></i> Identidade Visual Própria</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-yellow-500"></i> Alta Conversão</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-card border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald/5 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">O que dizem <span class="text-emerald">nossos clientes</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Veja como ajudamos empresas a alavancar vendas e escalar operações com a orientação correta baseada em dados.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-[#121212] border border-white/10 p-8 rounded-2xl reveal group hover:border-emerald/30 transition-colors">
+                    <div class="flex gap-1 text-emerald mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"Antes, a nossa equipe passava horas em planilhas para descobrir o que estava vendendo. Com as automações e os Dashboards da Dados Express, nós dobramos as vendas focando exatamente no produto certo, na hora certa."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-lg text-emerald border border-white/10">RC</div>
+                        <div>
+                            <h4 class="text-white font-medium">Ricardo Costa</h4>
+                            <p class="text-xs text-gray-500">Gerente Comercial, Varejo Regional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-[#121212] border border-white/10 p-8 rounded-2xl reveal group hover:border-emerald/30 transition-colors" style="transition-delay: 100ms;">
+                    <div class="flex gap-1 text-emerald mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"O pipeline de dados financeiro mudou a nossa vida. Tínhamos um gargalo de conciliação que a automação resolveu em uma semana. Ganhamos clareza e previsibilidade no fluxo de caixa."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-lg text-emerald border border-white/10">MF</div>
+                        <div>
+                            <h4 class="text-white font-medium">Mariana Freitas</h4>
+                            <p class="text-xs text-gray-500">Gestora de Produção, Confecções Estrela</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-[#121212] border border-white/10 p-8 rounded-2xl reveal group hover:border-emerald/30 transition-colors" style="transition-delay: 200ms;">
+                    <div class="flex gap-1 text-emerald mb-6">
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-emerald"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic leading-relaxed">"Eles conseguiram traduzir as nossas necessidades de gestão em painéis de Power BI super intuitivos. O investimento se pagou no primeiro mês apenas com o aumento de produtividade da equipe."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center font-bold text-lg text-emerald border border-white/10">AL</div>
+                        <div>
+                            <h4 class="text-white font-medium">André Lima</h4>
+                            <p class="text-xs text-gray-500">Proprietário, Padaria Bela Vista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Quote Section -->
+    <section id="contact" class="py-24 relative z-10 bg-black">
+        <div class="max-w-3xl mx-auto px-6 reveal">
+            <div class="bg-card border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald to-cyan"></div>
+                
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white mb-4">Pronto para transformar seus dados?</h2>
+                    <p class="text-gray-400">Fale conosco e solicite um orçamento sem compromisso. Nossa equipe entrará em contato rapidamente.</p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label for="name" class="text-sm font-medium text-gray-300">Nome Completo</label>
+                            <input type="text" id="name" placeholder="Ex: João da Silva" class="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-emerald/50 focus:ring-1 focus:ring-emerald/50 transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="phone" class="text-sm font-medium text-gray-300 flex items-center gap-2">
+                                Telefone / WhatsApp
+                                <img src="WhatsApp_Logo_PNG_Transparente_Sem_Fundo.png" alt="WhatsApp" class="w-4 h-4 object-contain" />
+                            </label>
+                            <input type="tel" id="phone" placeholder="(11) 99999-9999" class="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-emerald/50 focus:ring-1 focus:ring-emerald/50 transition-all">
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <label for="email" class="text-sm font-medium text-gray-300">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com.br" class="w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:border-emerald/50 focus:ring-1 focus:ring-emerald/50 transition-all">
+                    </div>
+
+                    <button type="button" class="w-full px-8 py-4 text-base font-semibold text-black bg-emerald rounded-lg hover:bg-emerald-light transition-all hover:shadow-[0_0_20px_rgba(0,255,135,0.4)] flex items-center justify-center gap-2 mt-4">
+                        Faça seu orçamento gratuito
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10 relative overflow-hidden bg-black/50">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-emerald/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-center gap-8">
+            <div class="flex items-center gap-6">
+                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-emerald/20 transition-all border border-transparent hover:border-emerald/50 hover:scale-110">
+                    <img src="fb_v2.png" alt="Facebook" class="h-8 w-auto object-contain transition-all" />
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-emerald/20 transition-all border border-transparent hover:border-emerald/50 hover:scale-110">
+                    <img src="ig_v2.png" alt="Instagram" class="h-8 w-auto object-contain transition-all" />
+                </a>
+                <a href="https://wa.me/5511999999999" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center hover:bg-emerald/20 transition-all border border-transparent hover:border-emerald/50 hover:scale-110">
+                    <img src="wa_v2.png" alt="WhatsApp" class="h-8 w-auto object-contain transition-all" />
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-16 border-t border-white/5 pt-8">
+            <p class="text-sm text-gray-500">&copy; 2026 Dados Express. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
